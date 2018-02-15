@@ -24,5 +24,8 @@ def main():
     run(['virtualenv', venv])
     run(['pip', 'install', '-r', join(REPO, 'src', 'py', 'requirements.txt')])
 
+    # cpp
+    run(['cmake', '-G', 'Xcode', join(REPO, 'src', 'cpp')])
+
 if __name__ == '__main__':
     main()
