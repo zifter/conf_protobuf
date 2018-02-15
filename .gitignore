@@ -30,3 +30,8 @@
 *.exe
 *.out
 *.app
+
+# Env
+*.DS_Store
+.idea
+_build
