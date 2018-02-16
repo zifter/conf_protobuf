@@ -1,7 +1,0 @@
-syntax = "proto3";
-
-message Status
-{
-    int32 status = 1;
-    string lang = 2;
-}
