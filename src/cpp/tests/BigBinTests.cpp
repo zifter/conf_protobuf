@@ -26,29 +26,58 @@ void test1()
         msg.set_bindata(data);
 
         msg.SerializeToString(&initialBinMsg);
-        std::cout << "Message with lots of binary data" << std::endl << initialBinMsg.size();
+
+        std::cout << "Message with lots of binary data" << std::endl 
+            << initialBinMsg.size() << std::endl
+            << msg.SpaceUsedLong() << std::endl;
         // 1028
+        // 1071
     }
 
+    // reserved
     {
         v3::BigBinV2 msg;
         msg.ParseFromString(initialBinMsg);
         assert(42 == msg.status());
 
         std::string buffer = msg.SerializeAsString();
-        std::cout << "Message after reload v2:" << std::endl << buffer.size();
+        std::cout << "Message after reload v2:" << std::endl 
+            << buffer.size() << std::endl
+            << msg.SpaceUsedLong() << std::endl;
         // 1028
+        // 1103
     }
 
+    // field deleted
     {
         v3::BigBinV3 msg;
         msg.ParseFromString(initialBinMsg);
         assert(42 == msg.status());
 
         std::string buffer = msg.SerializeAsString();
-        std::cout << "Message after reload v3:" << std::endl << buffer.size();
+        std::cout << "Message after reload v3:" << std::endl 
+            << buffer.size() << std::endl
+            << msg.SpaceUsedLong() << std::endl;
         // 1028
+        // 1103
     }
+
+    // cleanup field data
+    {
+        v3::BigBinV2 msg;
+        msg.ParseFromString(initialBinMsg);
+        assert(42 == msg.status());
+
+        msg.DiscardUnknownFields();
+         
+        std::string buffer = msg.SerializeAsString();
+        std::cout << "Message after reload v2 and remove field:" << std::endl
+            << buffer.size() << std::endl
+            << msg.SpaceUsedLong() << std::endl;
+        // 2
+        // 20
+    }
+
 }
 
 void run()
