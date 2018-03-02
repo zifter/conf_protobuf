@@ -1,0 +1,10 @@
+syntax = "proto3";
+
+package v3;
+
+message BigBinV2
+{
+    int32 status = 1;
+    reserved 2; // remove binary data
+    string newBinData = 3;
+}

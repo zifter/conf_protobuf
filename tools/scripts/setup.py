@@ -22,17 +22,14 @@ def _mkdir(d):
     except:
         pass
 
-
-def main():
-    generate_proto.main()
-
-    _recreate(BUILD)
-
+def gen_python():
     # python
     venv = join(BUILD, 'PYTHON_ENV')
     call(['virtualenv', venv])
     call(['pip', 'install', '-r', join(REPO, 'src', 'py', 'requirements.txt')])
 
+
+def gen_cpp():
     # cpp
     cwd = getcwd()
     try:
@@ -45,6 +42,14 @@ def main():
         call(['cmake', '-G', GENERATOR, src])
     finally:
         chdir(cwd)
+
+
+def main():
+    generate_proto.main()
+    _recreate(BUILD)
+
+    for g in [gen_python, gen_cpp]:
+        g()
 
 if __name__ == '__main__':
     main()

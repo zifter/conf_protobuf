@@ -1,0 +1,4 @@
+namespace BigBinTests
+{
+void run();
+}

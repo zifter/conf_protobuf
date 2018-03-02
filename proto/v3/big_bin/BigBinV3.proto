@@ -1,0 +1,9 @@
+syntax = "proto3";
+
+package v3;
+
+message BigBinV3
+{
+    int32 status = 1;
+    string newBinData = 3;
+}
