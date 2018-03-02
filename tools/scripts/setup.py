@@ -1,9 +1,9 @@
 from os import mkdir, chdir, getcwd
 from os.path import join
-from subprocess import run
+from subprocess import call
 from shutil import rmtree
 
-from env import BUILD, REPO
+from env import BUILD, REPO, GENERATOR
 import generate_proto
 
 
@@ -30,8 +30,8 @@ def main():
 
     # python
     venv = join(BUILD, 'PYTHON_ENV')
-    run(['virtualenv', venv])
-    run(['pip', 'install', '-r', join(REPO, 'src', 'py', 'requirements.txt')])
+    call(['virtualenv', venv])
+    call(['pip', 'install', '-r', join(REPO, 'src', 'py', 'requirements.txt')])
 
     # cpp
     cwd = getcwd()
@@ -42,7 +42,7 @@ def main():
         _recreate(build_)
         chdir(build_)
 
-        run(['cmake', '-G', 'Xcode', src])
+        call(['cmake', '-G', GENERATOR, src])
     finally:
         chdir(cwd)
 

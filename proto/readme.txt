@@ -1,0 +1,1 @@
+All messages should have unique name, beacause c++ can't link files with the same name :)
