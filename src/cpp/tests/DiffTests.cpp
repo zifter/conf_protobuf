@@ -36,7 +36,6 @@ void Fillip_Test1()
         tr->add_path(1);
         tr->add_path(1);
         tr->set_data_uint32(10);
-        assert(tr->has_data_uint32())
     }
     {//msg.section1.testValue2 = 20
         v3::diff::Transaction* tr = diff.add_transactions();
