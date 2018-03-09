@@ -9,14 +9,14 @@
 void CheckSizeOfEmptyMessage()
 {
     v3::BigMessage bigMessage;
-    ProtobufUtils::DumpMessageSize(&bigMessage);
+    ProtobufUtils::AssertStringSize(&bigMessage, 0);
 }
 
 void CheckSizeOfMessageFilledByField()
 {
     v3::BigMessage bigMessage;
     bigMessage.set_field1(42);
-    ProtobufUtils::DumpMessageSize(&bigMessage);
+    ProtobufUtils::AssertStringSize(&bigMessage, 2);
 }
 
 void CheckSizeOfMessageFillAndResetToDefaultField()
@@ -24,14 +24,14 @@ void CheckSizeOfMessageFillAndResetToDefaultField()
     v3::BigMessage bigMessage;
     bigMessage.set_field1(42);
     bigMessage.set_field1(0);
-    ProtobufUtils::DumpMessageSize(&bigMessage);
+    ProtobufUtils::AssertStringSize(&bigMessage, 0);
 }
 
 void CheckSizeOfMessageFilledBy1FieldInEmbeddedMessage()
 {
     v3::BigMessage bigMessage;
     bigMessage.mutable_all_fields()->set_data_int32(42);
-    ProtobufUtils::DumpMessageSize(&bigMessage);
+    ProtobufUtils::AssertStringSize(&bigMessage, 4);
 }
 
 START_SUITCASE(BigMessageTests)

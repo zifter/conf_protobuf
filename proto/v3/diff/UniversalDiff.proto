@@ -1,0 +1,10 @@
+syntax = "proto3";
+
+import "v3/diff/Transaction.proto";
+
+package v3.diff;
+
+message UniversalDiff
+{
+    repeated Transaction transactions = 1;
+}

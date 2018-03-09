@@ -1,0 +1,25 @@
+syntax = "proto3";
+
+package v3.diff;
+
+message TestMessage
+{
+    message TestSection1
+    {
+        uint32 value1 = 1;
+        uint32 value2 = 2;
+    }
+
+    message TestSection2
+    {
+        double value3 = 1;
+        double value4 = 2;
+    }
+
+    TestSection1 section1 = 1;
+    TestSection2 section2 = 2;
+    uint32 value5 = 3;
+    double value6 = 4;
+
+    repeated TestSection1 array_values = 5;
+}

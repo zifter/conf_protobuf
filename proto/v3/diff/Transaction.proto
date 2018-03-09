@@ -1,0 +1,32 @@
+syntax = "proto3";
+
+package v3.diff;
+
+message Transaction
+{
+    enum OpType
+    {
+        ADD = 0;
+        DELETE = 1;
+    };
+
+    repeated int32 path = 1;
+    oneof scalar {
+        double data_double = 2;
+        float data_float = 3;
+        int32 data_int32 = 4;
+        int64 data_int64 = 5;
+        uint32 data_uint32 = 6;
+        uint64 data_uint64 = 7;
+        sint32 data_sint32 = 8;
+        sint64 data_sint64 = 9;
+        fixed32 data_fixed32 = 10;
+        fixed64 data_fixed64 = 11;
+        sfixed32 data_sfixed32 = 12;
+        sfixed64 data_sfixed = 13;
+        bool data_bool = 14;
+        string data_string = 15;
+        bytes data_bytes = 16;
+    };
+    OpType operation = 17;
+}
