@@ -1,4 +1,0 @@
-namespace BigBinTests
-{
-void run();
-}

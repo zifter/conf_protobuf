@@ -1,8 +1,8 @@
-#include "tests/BigBinTests.h"
+#include "tests/UnitTestsCore.h"
 
 int main(int argc, char **argv)
 {
-    BigBinTests::run();
+    UnitTestsCore::Instance().Run();
 
     return 0;
 }

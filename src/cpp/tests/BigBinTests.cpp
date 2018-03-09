@@ -1,4 +1,4 @@
-#include "BigBinTests.h"
+#include "tests/UnitTestsCore.h"
 
 #include "proto/v3/big_bin/BigBinV1.pb.h"
 #include "proto/v3/big_bin/BigBinV2.pb.h"
@@ -7,10 +7,10 @@
 #include <iostream>
 #include <string>
 
-namespace BigBinTests
+void CheckWhatIsHappeningWithDeletedFieldWithBigSize()
 {
-void test1()
-{
+    std::cout << "BigBinTests" << std::endl;
+
     std::string initialBinMsg;
     {
         constexpr int SIZE = 1024;
@@ -77,11 +77,8 @@ void test1()
         // 2
         // 20
     }
-
 }
 
-void run()
-{
-    test1();
-}
-}
+START_SUITCASE(BigBinTests)
+    REGISTER_TEST(CheckWhatIsHappeningWithDeletedFieldWithBigSize);
+END_SUITCASE(BigBinTests)

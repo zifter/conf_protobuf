@@ -1,26 +1,11 @@
 from os import mkdir, chdir, getcwd
 from os.path import join
 from subprocess import call
-from shutil import rmtree
 
 from env import BUILD, REPO, GENERATOR
+from utils import recreate_dir, mkdir
 import generate_proto
 
-
-def _recreate(d):
-    try:
-        rmtree(d)
-    except:
-        pass
-
-    _mkdir(d)
-
-
-def _mkdir(d):
-    try:
-        mkdir(d)
-    except:
-        pass
 
 def gen_python():
     # python
@@ -36,7 +21,7 @@ def gen_cpp():
         src = join(REPO, 'src', 'cpp')
 
         build_ = join(REPO, '_build', 'cpp')
-        _recreate(build_)
+        recreate_dir(build_)
         chdir(build_)
 
         call(['cmake', '-G', GENERATOR, src])
@@ -46,7 +31,7 @@ def gen_cpp():
 
 def main():
     generate_proto.main()
-    _recreate(BUILD)
+    recreate_dir(BUILD)
 
     for g in [gen_python, gen_cpp]:
         g()

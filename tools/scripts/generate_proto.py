@@ -3,6 +3,7 @@ import subprocess
 from os.path import join, relpath, basename, splitext
 
 from env import REPO, PROTOC_DIR, PROTO_DIR
+from utils import cleanup_dir
 
 
 def get_protoc(protoc_dir):
@@ -34,6 +35,7 @@ def protoc(exe, protofile, protopathes, generator, output):
     else:
         print('FAILED')
 
+
 def gen_cmake_list(to_process, dest):
     cmake_src = []
     for p in to_process:
@@ -47,10 +49,10 @@ def gen_cmake_list(to_process, dest):
         data = 'SET(PROTO_SOURCES\n    {})'.format(src)
         f.write(data)
 
-    print cmake_src
+    print(cmake_src)
+
 
 def main():
-
     to_process = []
     for root, dirs, files in os.walk(PROTO_DIR):
         for f in files:
@@ -60,20 +62,26 @@ def main():
     exe = get_protoc(PROTOC_DIR)
 
     DEST = [
-    {
-        'generator': 'cpp_out',
-        'dest': join(REPO, 'src', 'cpp', 'proto'),
-        'postprocess': gen_cmake_list,
-    },
-    {
-        'generator': 'python_out',
-        'dest': join(REPO, 'src', 'py', 'proto'),
-    },
-]
+        {
+            'generator': 'cpp_out',
+            'dest': join(REPO, 'src', 'cpp', 'proto'),
+            'postprocess': gen_cmake_list,
+            'cleanup': ['*.cc', '.h'],
+        },
+        {
+            'generator': 'python_out',
+            'dest': join(REPO, 'src', 'py', 'proto'),
+            'cleanup': ['*.py'],
+        },
+    ]
 
     for d in DEST:
+        cleanup_dir(d['dest'], d['cleanup'])
+
         for p in to_process:
-            protoc(exe, p[0], p[1], d['generator'], join(d['dest'], p[2]))
+            protofile, protopathes, relfolder = p
+            protopathes = [PROTO_DIR]
+            protoc(exe, protofile, protopathes, d['generator'], d['dest'])
 
         postprocess = d.get('postprocess', None)
         if postprocess is not None:

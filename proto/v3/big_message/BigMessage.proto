@@ -1,0 +1,11 @@
+syntax = "proto3";
+
+import "v3/AllFieldsMessage.proto";
+
+package v3;
+
+message BigMessage
+{
+    int32 field1 = 1;
+    AllFieldsMessage all_fields = 2;
+}

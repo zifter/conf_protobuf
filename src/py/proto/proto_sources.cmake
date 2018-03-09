@@ -1,9 +1,0 @@
-SET(PROTO_SOURCES
-${CMAKE_CURRENT_SOURCE_DIR}/v2/status2.pb.h
-${CMAKE_CURRENT_SOURCE_DIR}/v2/status2.pb.cpp
-${CMAKE_CURRENT_SOURCE_DIR}/v3/status3.pb.h
-${CMAKE_CURRENT_SOURCE_DIR}/v3/status3.pb.cpp
-${CMAKE_CURRENT_SOURCE_DIR}/v3/big_bin/BigBinV1.pb.h
-${CMAKE_CURRENT_SOURCE_DIR}/v3/big_bin/BigBinV1.pb.cpp
-${CMAKE_CURRENT_SOURCE_DIR}/v3/big_bin/BigBinV2.pb.h
-${CMAKE_CURRENT_SOURCE_DIR}/v3/big_bin/BigBinV2.pb.cpp)

@@ -1,0 +1,39 @@
+syntax = "proto3";
+
+package v3;
+
+message AllFieldsMessage
+{
+    enum EnumField {
+        VALUE_0 = 0;
+        VALUE_1 = 1;
+        VALUE_2 = 2;
+        VALUE_3 = 3;
+    }
+
+    // scalar types
+    double data_double = 1;
+    float data_float = 2;
+    int32 data_int32 = 3;
+    int64 data_int64 = 4;
+    uint32 data_uint32 = 5;
+    uint64 data_uint64 = 6;
+    sint32 data_sint32 = 7;
+    sint64 data_sint64 = 8;
+    fixed32 data_fixed32 = 9;
+    fixed64 data_fixed64 = 10;
+    sfixed32 data_sfixed32 = 11;
+    sfixed64 data_sfixed = 12;
+    bool data_bool = 13;
+    string data_string = 14;
+    bytes data_bytes = 15;
+
+    // enum
+    EnumField enum_data = 16;
+
+    // array
+    repeated int32 data_int32_array = 17;
+
+    // map
+    map<int32, string> data_int32_str_map = 18;
+}
