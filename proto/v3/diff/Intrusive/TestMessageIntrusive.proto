@@ -1,0 +1,36 @@
+syntax = "proto3";
+
+package v3.diff.intrusive;
+
+import "v3/diff/Intrusive/IntrusiveDiff.proto";
+
+message TestMessageIntrusive
+{
+    message TestSection1
+    {
+        // diff stuff, because of using in array
+        OperationType diff_type = 1;
+
+        uint32 value1 = 2;
+        uint32 value2 = 3;
+    }
+
+    message TestSection2
+    {
+        // diff stuff, because of using in map
+        OperationType diff_type = 1;
+        int32 diff_order = 2;
+
+        double value3 = 3;
+        double value4 = 4;
+    }
+
+    MessageType type = 1;
+    TestSection1 section1 = 2;
+    TestSection2 section2 = 3;
+    uint32 value5 = 4;
+    double value6 = 5;
+
+    repeated TestSection1 array_values = 6;
+    map<int32, TestSection2> map_values = 7;
+}

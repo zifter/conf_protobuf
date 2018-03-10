@@ -1,9 +1,9 @@
-from os import mkdir, chdir, getcwd
+from os import chdir, getcwd
 from os.path import join
 from subprocess import call
 
 from env import BUILD, REPO, GENERATOR
-from utils import recreate_dir, mkdir
+from utils import recreate_dir
 import generate_proto
 
 

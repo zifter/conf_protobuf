@@ -1,0 +1,15 @@
+syntax = "proto3";
+
+package v3.diff.intrusive;
+
+enum OperationType
+{
+    ADD = 0;
+    DELETE = 1;
+}
+
+enum MessageType
+{
+    DIFF = 0;
+    FULL = 1;
+}

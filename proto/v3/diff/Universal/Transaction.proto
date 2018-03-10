@@ -1,6 +1,6 @@
 syntax = "proto3";
 
-package v3.diff;
+package v3.diff.universal;
 
 message Transaction
 {
@@ -18,15 +18,12 @@ message Transaction
         int64 data_int64 = 5;
         uint32 data_uint32 = 6;
         uint64 data_uint64 = 7;
-        sint32 data_sint32 = 8;
-        sint64 data_sint64 = 9;
-        fixed32 data_fixed32 = 10;
-        fixed64 data_fixed64 = 11;
-        sfixed32 data_sfixed32 = 12;
-        sfixed64 data_sfixed = 13;
-        bool data_bool = 14;
-        string data_string = 15;
-        bytes data_bytes = 16;
+        bool data_bool = 8;
+        string data_string = 9;
+        bytes data_bytes = 10;
     };
-    OpType operation = 17;
+    OpType operation = 11;
+
+    bytes data_or_key = 12;
+    bytes value = 13;
 }

@@ -1,7 +1,7 @@
 from shutil import rmtree
-from os import remove, walk, path
+from os import remove, walk, path, mkdir
 
-def mkdir(d):
+def make_dir(d):
     try:
         mkdir(d)
     except:
@@ -14,7 +14,7 @@ def recreate_dir(directory):
     except:
         pass
 
-    mkdir(directory)
+    make_dir(directory)
 
 
 def cleanup_dir(directory, cleanupExt):

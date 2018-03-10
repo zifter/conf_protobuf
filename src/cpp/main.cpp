@@ -1,4 +1,4 @@
-#include "tests/UnitTestsCore.h"
+#include "tests/core/UnitTestsCore.h"
 
 int main(int argc, char **argv)
 {

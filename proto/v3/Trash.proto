@@ -1,0 +1,26 @@
+syntax = "proto3";
+
+package v3.trash;
+
+message Level0
+{
+    message Level1
+    {
+        message Level2
+        {
+            message Level3
+            {
+                int32 field = 1;
+            }
+
+            Level3 level3 = 1;
+            int32 field = 2;
+        }
+
+        Level2 level2 = 1;
+        int32 field = 2;
+    }
+
+    Level1 level1 = 1;
+    int32 field = 2;
+}
